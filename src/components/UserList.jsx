@@ -134,7 +134,7 @@ const UserList = () => {
         </div>
         <div className="row">
           <div className="col ">
-          <Typography style={{margin:'20px 0 0 20px',color:'grey',fontSize:"20px"}} >showing total {data.length} results</Typography>
+          <Typography style={{margin:'20px 0 0 20px',color:'grey',fontSize:"20px"}} >showing total {Object.values(WardsData[0]?.area)[index].length} results</Typography>
 
 
 
