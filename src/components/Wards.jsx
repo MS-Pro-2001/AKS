@@ -56,6 +56,7 @@ const Wards = () => {
 
   const wards = [
     "Bopal",
+    "Bapunagar",
     "Ghatlodia",
     "Krishnanagar",
     "Maninagar",
@@ -64,10 +65,9 @@ const Wards = () => {
     "Noblenagar",
     "Odhav",
     "Sabarmati",
+    "Thaltej",
     "Vastrapur",
     "Vejalpur",
-    "Thaltej",
-    "Bapunagar",
   ]
 
   const navigate = useNavigate();
