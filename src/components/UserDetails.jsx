@@ -13,9 +13,25 @@ const UserDetails = () => {
     const [isLoading, setisLoading] = useState(true);
 
     const fetchData = async ()=>{
-        await fetch(`https://dummyjson.com/users/${id}`)
+        await fetch('https://sheetdb.io/api/v1/d1jcvp2yjtm67')
         .then(res => res.json())
-        .then(data => setUser(data))
+        .then(data =>{
+
+            for(var i=0;i<=data.length;i++)
+            {
+
+                
+                if(data[i].UserId === id){
+                    setUser(data[i])
+                    break;
+                    
+    
+                }
+            }
+        } 
+            
+            
+            )
 
         setisLoading(false);
       
@@ -28,8 +44,10 @@ const UserDetails = () => {
         
       
       },[])
+      
+         console.log(user)
 
-      console.log(user.firstName);
+   
       
       
 
@@ -59,14 +77,14 @@ const UserDetails = () => {
     </div>
     <div className="row my-2 ">
 
-        <TextField id="outlined-basic" label="Name" value={user?.firstName} variant="outlined" />
+        <TextField id="outlined-basic" label="Name" value={user?.Name_of_member} variant="outlined" />
     </div>
 
 
 
     <div className="row my-2">
 
-        <TextField id="outlined-basic" label="Mobile" value={user?.phone} variant="outlined" />
+        <TextField id="outlined-basic" label="Mobile" value={user?.Mobile_number} variant="outlined" />
     </div>
 
 
@@ -74,7 +92,7 @@ const UserDetails = () => {
 
 
     <div className="row my-2">
-        <TextField id="outlined-basic" label="email" value={user.email} variant="outlined" />
+        <TextField id="outlined-basic" label="Ward" value={user?.Ward} variant="outlined" />
 
     </div>
     <div className="row my-2">
@@ -85,7 +103,7 @@ const UserDetails = () => {
             multiline
             maxRows={4}
             variant="standard"
-            value={user?.address?.address}
+            value={user?.Address}
         />
 
     </div>

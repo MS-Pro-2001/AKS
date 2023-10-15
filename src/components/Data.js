@@ -2,41 +2,6 @@
 
 
 
-
-
-
-
-
-/* 
-
-
----> UserDetails route
-
-            Personal details
-
-            firstName
-            lastName
-            Address
-            Area -> will have a dropdown
-
-            family details
-
-----> Wards
-
-  name of wards
-
-----> wards/ wardName
-   list of member in specific wards
-
-
-
-
-
-
-*/
-
-
-
 export const UserData = [
   {
     userDetails:{
@@ -93,4 +58,6 @@ export const WardsData =
     
 ]
 
-    
+
+
+

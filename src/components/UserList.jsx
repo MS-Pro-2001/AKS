@@ -66,9 +66,9 @@ const UserList = () => {
   // Apply await async here
 
   const fetchData = async () => {
-    await fetch('https://dummyjson.com/users/')
+    await fetch('https://sheetdb.io/api/v1/d1jcvp2yjtm67')
       .then(res => res.json())
-      .then(data => setData(data.users))
+      .then(data => setData(data))
 
     setisLoading(false)
 
@@ -84,13 +84,14 @@ const UserList = () => {
 
 
   }, [])
+  // console.log(data[0])
 
   const searchfunctionality = async (e)=>{
     console.log(e)
     setQuery(e)
     await fetch(`https://dummyjson.com/users/search?q=${query}`)
     .then(res => res.json())
-    .then(data => setData(data.users))
+    .then(data => setData(data))
 
   setisLoading(false)
 
@@ -134,7 +135,7 @@ const UserList = () => {
         </div>
         <div className="row">
           <div className="col ">
-          <Typography style={{margin:'20px 0 0 20px',color:'grey',fontSize:"20px"}} >showing total {Object.values(WardsData[0]?.area)[index].length} results</Typography>
+          <Typography style={{margin:'20px 0 0 20px',color:'grey',fontSize:"20px"}} >showing total {data.length}  results</Typography>
 
 
 
@@ -187,13 +188,14 @@ const UserList = () => {
                     <>
                     {
 
-Object.values(WardsData[0]?.area)[index]?.map((item) =>
+data?.map((item) =>
 
                         <>
+                        {console.log(item)}
                           <ListItem
                             key={item}
                             secondaryAction={
-                             <a href={"tel:"+item.phone}>
+                             <a href={"tel:"+item.Mobile_number}>
                                 <CallIcon color="primary" />
                               </a>
                             }
@@ -202,12 +204,12 @@ Object.values(WardsData[0]?.area)[index]?.map((item) =>
                             <ListItemButton>
                               <ListItemIcon>
                                 <ListItemAvatar>
-                                  <Avatar alt="Remy Sharp" src={item.image} />
+                                  <Avatar alt="Remy Sharp" src={""} />
                                 </ListItemAvatar>
 
                               </ListItemIcon>
 
-                              <ListItemText primary={isLoading ? <><Skeleton variant="text" sx={{ fontSize: '1rem' }} /></> : item} secondary={item?.company?.department} onClick={() => navigate(`/Userdetails/${item.id}`)} />
+                              <ListItemText primary={isLoading ? <><Skeleton variant="text" sx={{ fontSize: '1rem' }} /></> : item.Name_of_member} secondary={""} onClick={() => navigate(`/Userdetails/${item.UserID}`)} />
 
 
 
