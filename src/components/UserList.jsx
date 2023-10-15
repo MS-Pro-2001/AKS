@@ -89,16 +89,16 @@ const UserList = () => {
   }, [])
   // console.log(data[0])
 
-  // const searchfunctionality = async (e)=>{
-  //   console.log(e)
-  //   setQuery(e)
-  //   await fetch(`https://dummyjson.com/users/search?q=${query}`)
-  //   .then(res => res.json())
-  //   .then(data => setData(data))
+  const searchfunctionality = async (e)=>{
+    console.log(e)
+    setQuery(e)
+    await fetch(`https://dummyjson.com/users/search?q=${query}`)
+    .then(res => res.json())
+    .then(data => setData(data))
 
-  // setisLoading(false)
+  setisLoading(false)
 
-  // }
+  }
   var index;
  
   Object.keys(WardsData[0]?.area).map((item,key)=>{
