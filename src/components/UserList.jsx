@@ -59,7 +59,7 @@ const UserList = () => {
   const {area} = useParams();
 
   const [data, setData] = useState([])
-  const [isLoading, setisLoading] = useState(false)
+  const [isLoading, setisLoading] = useState(true)
   const [query, setQuery] = useState("")
 
 
@@ -69,33 +69,36 @@ const UserList = () => {
     await fetch('https://sheetdb.io/api/v1/d1jcvp2yjtm67')
       .then(res => res.json())
       .then(data => setData(data))
+      setisLoading(false)
 
-    setisLoading(false)
-
+      console.log("1"+isLoading)
 
   }
 
 
   useEffect(() => {
+    console.log("2"+isLoading)
+
     setTimeout(() => {
       
       fetchData();
+      
     }, 1500);
 
 
   }, [])
   // console.log(data[0])
 
-  const searchfunctionality = async (e)=>{
-    console.log(e)
-    setQuery(e)
-    await fetch(`https://dummyjson.com/users/search?q=${query}`)
-    .then(res => res.json())
-    .then(data => setData(data))
+  // const searchfunctionality = async (e)=>{
+  //   console.log(e)
+  //   setQuery(e)
+  //   await fetch(`https://dummyjson.com/users/search?q=${query}`)
+  //   .then(res => res.json())
+  //   .then(data => setData(data))
 
-  setisLoading(false)
+  // setisLoading(false)
 
-  }
+  // }
   var index;
  
   Object.keys(WardsData[0]?.area).map((item,key)=>{
@@ -147,7 +150,7 @@ const UserList = () => {
 
                     {isLoading ?<>
                       {
-                      ['1','2','3','4','5','6','7','8'].map(()=>
+                      ['1','2','3']?.map(()=>
                       <>
                       <ListItem
                 
@@ -191,7 +194,7 @@ const UserList = () => {
 data?.map((item) =>
 
                         <>
-                        {console.log(item)}
+                       
                           <ListItem
                             key={item}
                             secondaryAction={
@@ -209,7 +212,7 @@ data?.map((item) =>
 
                               </ListItemIcon>
 
-                              <ListItemText primary={isLoading ? <><Skeleton variant="text" sx={{ fontSize: '1rem' }} /></> : item.Name_of_member} secondary={""} onClick={() => navigate(`/Userdetails/${item.UserID}`)} />
+                              <ListItemText primary={isLoading ? <><Skeleton variant="text" sx={{ fontSize: '1rem' }} /></> : item.Name_of_member} secondary={""} onClick={() => navigate(`/Userdetails/${item.UserId}`)} />
 
 
 
