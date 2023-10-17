@@ -1,5 +1,5 @@
 import { Divider, IconButton, List, ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListItemText, Skeleton, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import CallIcon from '@mui/icons-material/Call';
 
 import Avatar from '@mui/material/Avatar';
@@ -11,6 +11,7 @@ import SearchAppBar from './SearchAppBar';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { WardsData } from './Data';
+import { MyContext } from '../ContextAPI';
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
@@ -56,60 +57,46 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 
 const UserList = () => {
   const navigate = useNavigate();
-  const {area} = useParams();
+  
+  const { area } = useParams();
+  const { data } = useContext(MyContext)
 
-  const [data, setData] = useState([])
+
   const [isLoading, setisLoading] = useState(true)
   const [query, setQuery] = useState("")
 
 
-  // Apply await async here
-
-  const fetchData = async () => {
-    await fetch('https://sheetdb.io/api/v1/d1jcvp2yjtm67')
-      .then(res => res.json())
-      .then(data => setData(data))
-      setisLoading(false)
-
-      console.log("1"+isLoading)
-
-  }
+  setTimeout(() => {
+    setisLoading(false)
+  }, 2500);
 
 
-  useEffect(() => {
-    console.log("2"+isLoading)
-
-    setTimeout(() => {
-      
-      fetchData();
-      
-    }, 1500);
+  const filteredData = data.filter((item) => {
+    return item.Ward === area
+  })
 
 
-  }, [])
-  // console.log(data[0])
 
-  const searchfunctionality = async (e)=>{
-    console.log(e)
+  const searchfunctionality = async (e) => {
     setQuery(e)
     await fetch(`https://dummyjson.com/users/search?q=${query}`)
-    .then(res => res.json())
-    .then(data => setData(data))
+      .then(res => res.json())
+      .then(data => setUsers(data))
 
-  setisLoading(false)
+    setisLoading(false)
 
   }
   var index;
- 
-  Object.keys(WardsData[0]?.area).map((item,key)=>{
-    if(item === area){
+
+  Object.keys(WardsData[0]?.area).map((item, key) => {
+    if (item === area) {
       index = key;
-      
+
     }
   })
- 
- 
- 
+
+
+
 
 
 
@@ -119,130 +106,128 @@ const UserList = () => {
 
 
       <div className="container my-4">
+
+        {/* ################  SearchBar ####################### */}
+
         <div className="row ">
           <div className="col mx-3 border border-3 border-primary rounded-pill">
-
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase
                 placeholder="Search…"
-                onChange={(e)=>searchfunctionality(e.target.value)}
+                onChange={(e) => searchfunctionality(e.target.value)}
                 value={query}
                 inputProps={{ 'aria-label': 'search' }}
               />
             </Search>
           </div>
-
         </div>
+
+
+
+
+
+
         <div className="row">
           <div className="col ">
-          <Typography style={{margin:'20px 0 0 20px',color:'grey',fontSize:"20px"}} >showing total {data.length}  results</Typography>
-
-
-
-
+            <Typography style={{ margin: '20px 0 0 20px', color: 'grey', fontSize: "20px" }} >showing total {filteredData.length}  results</Typography>
             <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+              <List>
 
-            
-                  <List>
+                {filteredData.length === 0 ?
+                  <>
+                    <h1>No member listed</h1>
 
-                    {isLoading ?<>
+                  </> :
+                  <>
+
+
+
+
+                    {isLoading ? <>
                       {
-                      ['1','2','3']?.map(()=>
+                        filteredData?.map(() =>
+                          <>
+                            <ListItem
+
+                              secondaryAction={
+                                <IconButton edge="end" aria-label="delete">
+                                  <CallIcon color="primary" />
+                                </IconButton>
+                              }
+
+                              disablePadding >
+                              <ListItemButton>
+                                <ListItemIcon>
+                                  <ListItemAvatar>
+                                    {/* <Avatar alt="Remy Sharp" src={<Skeleton variant="circular" width={40} height={40} />} /> */}
+                                    <Skeleton variant="circular" width={40} height={40} />
+                                  </ListItemAvatar>
+
+                                </ListItemIcon>
+
+                                <ListItemText primary={<Skeleton variant="text" sx={{ fontSize: '1rem' }} width={200} />} secondary={<Skeleton variant="text" width={100} />} />
+
+
+
+
+                              </ListItemButton>
+                            </ListItem>
+
+                            <Divider />
+
+                          </>
+
+                        )
+                      }
+
+
+
+                    </> :
                       <>
-                      <ListItem
-                
-                secondaryAction={
-                  <IconButton edge="end" aria-label="delete">
-                   <CallIcon  color="primary"/>
-                  </IconButton>
-                }
- 
-                disablePadding >
-                <ListItemButton>
-                  <ListItemIcon>
-                    <ListItemAvatar>
-                      {/* <Avatar alt="Remy Sharp" src={<Skeleton variant="circular" width={40} height={40} />} /> */}
-                      <Skeleton variant="circular" width={40} height={40} />
-                    </ListItemAvatar>
-                   
-                  </ListItemIcon>
-                  
-                  <ListItemText  primary={<Skeleton variant="text" sx={{ fontSize: '1rem' }} width={200} />}  secondary={<Skeleton variant="text" width={100} />}  />
-                 
-     
-                
- 
-                </ListItemButton>
-              </ListItem>
-                
-              <Divider/>
-               
+                        {
+
+                          filteredData?.map((item) =>
+
+                            <>
+
+                              <ListItem
+                                key={item}
+                                secondaryAction={
+                                  <a href={"tel:" + item.Mobile_number}>
+                                    <CallIcon color="primary" />
+                                  </a>
+                                }
+
+                                disablePadding >
+                                <ListItemButton>
+                                  <ListItemIcon>
+                                    <ListItemAvatar>
+                                      <Avatar alt="Remy Sharp" src={""} />
+                                    </ListItemAvatar>
+
+                                  </ListItemIcon>
+
+                                  <ListItemText primary={isLoading ? <><Skeleton variant="text" sx={{ fontSize: '1rem' }} /></> : item.Name_of_member} secondary={""} onClick={() => navigate(`/Userdetails/${item.UserId}`)} />
+                                </ListItemButton>
+                              </ListItem>
+
+                              <Divider />
+
+                            </>
+                          )
+                        }
                       </>
-                      
-                      )
                     }
-                    
-                    
-                    
-                    </>:
-                    <>
-                    {
+                  </>
 
-data?.map((item) =>
+                }
 
-                        <>
-                       
-                          <ListItem
-                            key={item}
-                            secondaryAction={
-                             <a href={"tel:"+item.Mobile_number}>
-                                <CallIcon color="primary" />
-                              </a>
-                            }
-
-                            disablePadding >
-                            <ListItemButton>
-                              <ListItemIcon>
-                                <ListItemAvatar>
-                                  <Avatar alt="Remy Sharp" src={""} />
-                                </ListItemAvatar>
-
-                              </ListItemIcon>
-
-                              <ListItemText primary={isLoading ? <><Skeleton variant="text" sx={{ fontSize: '1rem' }} /></> : item.Name_of_member} secondary={""} onClick={() => navigate(`/Userdetails/${item.UserId}`)} />
-
-
-
-
-                            </ListItemButton>
-                          </ListItem>
-
-                          <Divider />
-
-                        </>
-                      )
-                    }
-                    </>
-                  }
-
-
-                  </List>
-
-              
-              
-
-
-
+              </List>
 
             </List>
-
-
-
-
-
           </div>
         </div>
       </div>
