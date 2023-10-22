@@ -1,9 +1,26 @@
-import { Avatar, Button, TextField } from '@mui/material'
+import { Avatar, Button, IconButton, ListItem, TextField } from '@mui/material'
 import React, { useContext, useEffect } from 'react'
 import SearchAppBar from './SearchAppBar'
 import { useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { MyContext } from '../ContextAPI'
+
+
+
+import ListSubheader from '@mui/material/ListSubheader';
+import List from '@mui/material/List';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+
+import DraftsIcon from '@mui/icons-material/Drafts';
+import SendIcon from '@mui/icons-material/Send';
+
+
+import PersonIcon from '@mui/icons-material/Person';
+import RoomIcon from '@mui/icons-material/Room';
+import CallIcon from '@mui/icons-material/Call';
+
 
 const UserDetails = () => {
     const {id} = useParams()
@@ -59,90 +76,14 @@ const UserDetails = () => {
          return (
         <>
         <SearchAppBar  flag="True" pageName="User Details"  />
-        {
-            isLoading? <></>:<>
-
-<div style={{ margin: '0 10px 0 10px' }}>
-
-<div className="container my-4 " >
-    <div className="row my-4" >
-        <div className="position-relative my-4">
-
-            <div className="position-absolute top-0 start-50 translate-middle">
-                <Avatar
-                    alt="Remy Sharp"
-                    src={newval?.image}
-                    sx={{ width: 70, height: 70 }}
-                    />
-
-            </div>
-        </div>
+       
 
 
-    </div>
-    <div className="row my-2 ">
-
-        <TextField id="outlined-basic" label="Name" value={newval[0]?.Name_of_member} variant="outlined" />
-    </div>
-
-
-
-    <div className="row my-2">
-
-        <TextField id="outlined-basic" label="Mobile" value={newval[0]?.Mobile_number} variant="outlined" />
-    </div>
-
-
-
-
-
-    <div className="row my-2">
-        <TextField id="outlined-basic" label="Ward" value={newval[0]?.Ward} variant="outlined" />
-
-    </div>
-    <div className="row my-2">
-
-        <TextField
-            id="standard-multiline-flexible"
-            label="Address"
-            multiline
-            maxRows={4}
-            variant="standard"
-            value={newval[0]?.Address}
-        />
-
-    </div>
-    <div className="row my-2">
-        <Button variant='contained' >Set Google map</Button>
-    </div>
-
-
-
-
-
-
-
-
-</div>
-</div>
             
     {/* Family Section */}
 
 
-    <div style={{ margin: '0 10px 0 10px' }}>
-
-        <div style={{display:'flex',justifyContent:'center'}}>
-            <h1>Family Details</h1>
-        </div>
- 
-
-
- { newval[0]?.Name_of_member_2 === ""?<></>:
-
-
- 
-
-<div className="container my-4 " >
+    <div style={{ margin: '20px 20px' }}>
 
     <div className="row my-4" >
         <div className="position-relative my-4">
@@ -159,153 +100,127 @@ const UserDetails = () => {
 
 
     </div>
-    <div className="row my-2 ">
-
-        <TextField id="outlined-basic" label="Name" value={newval[0]?.Name_of_member_2} variant="outlined" />
-    </div>
 
 
 
-    <div className="row my-2">
-
-        <TextField id="outlined-basic" label="Relationship" value={newval[0]?.Relationship_with_member_2
-} variant="outlined" />
-    </div>
-
-
-
-
-
-    <div className="row my-2">
-    <TextField id="outlined-basic" label="Date of Birth" value={newval[0]?.Date_of_birth_member_2
-} variant="outlined" />
+        <List
+        
+      sx={{ width: '100%',boxShadow:'1px 1px 1px 1px  lightgrey', borderRadius:'20px' }}
+      component="nav"
+      aria-labelledby="nested-list-subheader"
+      subheader={
+        <ListSubheader style={{background:'#1976d2',borderRadius:'20px 20px 0px 0px',color:'white'}} component="div" id="nested-list-subheader">
+         Primary Details
+        </ListSubheader>
+      }
+    >
+      <ListItemButton>
+        <ListItemIcon>
+        <PersonIcon/>
+        </ListItemIcon>
+        <ListItemText primary={newval[0]?.Name_of_member} />
+      </ListItemButton>
+      <ListItemButton>
+        <ListItemIcon>
+          <CallIcon />
+        </ListItemIcon>
+        <ListItemText primary={newval[0]?.Mobile_number}/>
+      </ListItemButton>
+      <ListItemButton>
+        <ListItemIcon>
+          <RoomIcon />
+        </ListItemIcon>
+        <ListItemText primary={newval[0]?.Address} />
+      </ListItemButton>
     
-
-    </div>
-
-
+    </List>
 
 </div>
 
-}
 
-{newval[0]?.Name_of_member_3 === ""?<></>:
-
-
-<div className="container my-4 " >
-
-    <div className="row my-4" >
-        <div className="position-relative my-4">
-
-            <div className="position-absolute top-0 start-50 translate-middle">
-                <Avatar
-                    alt="Remy Sharp"
-                    src={newval?.image}
-                    sx={{ width: 70, height: 70 }}
-                />
-
-            </div>
-        </div>
-
-
-    </div>
-    <div className="row my-2 ">
-
-        <TextField id="outlined-basic" label="Name" value={newval[0]?.Name_of_member_3} variant="outlined" />
-    </div>
-
-
-
-    <div className="row my-2">
-
-        <TextField id="outlined-basic" label="Relationship" value={newval[0]?.Relationship_with_member_3
-} variant="outlined" />
-    </div>
+<div style={{ margin: '20px 20px' }}>
 
 
 
 
 
-    <div className="row my-2">
-    <TextField id="outlined-basic" label="Date of Birth" value={newval[0]?.Date_of_birth_member_3
-} variant="outlined" />
+    <List
     
-
-    </div>
-
-
-
-</div>
-}
-
-{newval[0]?.Name_of_member_4 === ""?<></>:
-
-
-
-
-<div className="container my-4 " >
-
-    <div className="row my-4" >
-        <div className="position-relative my-4">
-
-            <div className="position-absolute top-0 start-50 translate-middle">
-                <Avatar
-                    alt="Remy Sharp"
-                    src={newval?.image}
-                    sx={{ width: 70, height: 70 }}
-                />
-
-            </div>
-        </div>
+  sx={{ width: '100%',boxShadow:'1px 1px 1px 1px  lightgrey', borderRadius:'20px' }}
+  component="nav"
+  aria-labelledby="nested-list-subheader"
+  subheader={
+    <ListSubheader style={{background:'#1976d2',borderRadius:'20px 20px 0px 0px',color:'white'}} component="div" id="nested-list-subheader">
+     Family Details
+    </ListSubheader>
+  }
+>
+<ListItemButton>
+   
+   <ListItemText primary={newval[0]?.Name_of_member_1} secondary={newval[0].Relationship}/>
+   <ListItemText />
+    <ListItemText />
+    <ListItemText />
+    <ListItemText />
+   <ListItemText primary={newval[0]?.Date_of_birth_member_1}/>
 
 
-    </div>
-    <div className="row my-2 ">
+ </ListItemButton>
 
-        <TextField id="outlined-basic" label="Name" value={newval[0]?.Name_of_member_4} variant="outlined" />
-    </div>
+  <ListItemButton>
 
-
-
-    <div className="row my-2">
-
-        <TextField id="outlined-basic" label="Relationship" value={newval[0]?.Relationship_with_member_4
-} variant="outlined" />
-    </div>
-
+  
+   
+    <ListItemText primary={newval[0]?.Name_of_member_2} secondary={newval[0].Relationship_with_member_2}  />
+    <ListItemText />
+    <ListItemText />
+    <ListItemText />
+    <ListItemText />
+    <ListItemText primary={newval[0]?.Date_of_birth_member_2}/>
 
 
+   
 
+  </ListItemButton>
 
-    <div className="row my-2">
-    <TextField id="outlined-basic" label="Date of Birth" value={newval[0]?.Date_of_birth_member_4
-} variant="outlined" />
+  
+
+  <ListItemButton>
+   
+    <ListItemText primary={newval[0]?.Name_of_member_3} secondary={newval[0].Relationship_with_member_3}/>
+    <ListItemText />
+    <ListItemText />
+    <ListItemText />
+    <ListItemText />
+    <ListItemText primary={newval[0]?.Date_of_birth_member_3}/>
+  </ListItemButton>
+
+  <ListItemButton>
     
+    <ListItemText primary={newval[0]?.Name_of_member_4} secondary={newval[0].Relationship_with_member_4} />
+    <ListItemText />
+    <ListItemText />
+    <ListItemText />
+    <ListItemText />
+    <ListItemText primary={newval[0]?.Date_of_birth_member_4}/>
+  </ListItemButton>
 
-    </div>
-
-
-
-</div>
-}
-
-
-
-
+</List>
 
 </div>
+        
             
             
             
             
             </>
-        }
+        
        
 
 
 
 
-                        </>
+                        
     )
 }
 
