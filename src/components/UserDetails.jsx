@@ -50,6 +50,8 @@ const UserDetails = () => {
     //     fetchData();    
     // },[])
 
+    // console.log(data)
+
  
    
       
@@ -64,9 +66,9 @@ const UserDetails = () => {
 
 <div className="container my-4 " >
     <div className="row my-4" >
-        <div class="position-relative my-4">
+        <div className="position-relative my-4">
 
-            <div class="position-absolute top-0 start-50 translate-middle">
+            <div className="position-absolute top-0 start-50 translate-middle">
                 <Avatar
                     alt="Remy Sharp"
                     src={newval?.image}
@@ -135,13 +137,17 @@ const UserDetails = () => {
  
 
 
+ { newval[0]?.Name_of_member_2 === ""?<></>:
+
+
+ 
 
 <div className="container my-4 " >
 
     <div className="row my-4" >
-        <div class="position-relative my-4">
+        <div className="position-relative my-4">
 
-            <div class="position-absolute top-0 start-50 translate-middle">
+            <div className="position-absolute top-0 start-50 translate-middle">
                 <Avatar
                     alt="Remy Sharp"
                     src={newval?.image}
@@ -178,13 +184,115 @@ const UserDetails = () => {
     </div>
 
 
-  
-   
 
+</div>
+
+}
+
+{newval[0]?.Name_of_member_3 === ""?<></>:
+
+
+<div className="container my-4 " >
+
+    <div className="row my-4" >
+        <div className="position-relative my-4">
+
+            <div className="position-absolute top-0 start-50 translate-middle">
+                <Avatar
+                    alt="Remy Sharp"
+                    src={newval?.image}
+                    sx={{ width: 70, height: 70 }}
+                />
+
+            </div>
+        </div>
+
+
+    </div>
+    <div className="row my-2 ">
+
+        <TextField id="outlined-basic" label="Name" value={newval[0]?.Name_of_member_3} variant="outlined" />
+    </div>
+
+
+
+    <div className="row my-2">
+
+        <TextField id="outlined-basic" label="Relationship" value={newval[0]?.Relationship_with_member_3
+} variant="outlined" />
+    </div>
+
+
+
+
+
+    <div className="row my-2">
+    <TextField id="outlined-basic" label="Date of Birth" value={newval[0]?.Date_of_birth_member_3
+} variant="outlined" />
+    
+
+    </div>
 
 
 
 </div>
+}
+
+{newval[0]?.Name_of_member_4 === ""?<></>:
+
+
+
+
+<div className="container my-4 " >
+
+    <div className="row my-4" >
+        <div className="position-relative my-4">
+
+            <div className="position-absolute top-0 start-50 translate-middle">
+                <Avatar
+                    alt="Remy Sharp"
+                    src={newval?.image}
+                    sx={{ width: 70, height: 70 }}
+                />
+
+            </div>
+        </div>
+
+
+    </div>
+    <div className="row my-2 ">
+
+        <TextField id="outlined-basic" label="Name" value={newval[0]?.Name_of_member_4} variant="outlined" />
+    </div>
+
+
+
+    <div className="row my-2">
+
+        <TextField id="outlined-basic" label="Relationship" value={newval[0]?.Relationship_with_member_4
+} variant="outlined" />
+    </div>
+
+
+
+
+
+    <div className="row my-2">
+    <TextField id="outlined-basic" label="Date of Birth" value={newval[0]?.Date_of_birth_member_4
+} variant="outlined" />
+    
+
+    </div>
+
+
+
+</div>
+}
+
+
+
+
+
 </div>
             
             

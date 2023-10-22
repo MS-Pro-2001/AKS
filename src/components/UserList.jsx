@@ -57,7 +57,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 
 const UserList = () => {
   const navigate = useNavigate();
-  
+
   const { area } = useParams();
   const { data } = useContext(MyContext)
 
@@ -77,23 +77,23 @@ const UserList = () => {
 
 
 
-  const searchfunctionality = async (e) => {
-    setQuery(e)
-    await fetch(`https://dummyjson.com/users/search?q=${query}`)
-      .then(res => res.json())
-      .then(data => setUsers(data))
+  // const searchfunctionality = async (e) => {
+  //   setQuery(e)
+  //   await fetch(`https://dummyjson.com/users/search?q=${query}`)
+  //     .then(res => res.json())
+  //     .then(data => setUsers(data))
 
-    setisLoading(false)
+  //   setisLoading(false)
 
-  }
-  var index;
+  // }
+  // var index;
 
-  Object.keys(WardsData[0]?.area).map((item, key) => {
-    if (item === area) {
-      index = key;
+  // Object.keys(WardsData[0]?.area).map((item, key) => {
+  //   if (item === area) {
+  //     index = key;
 
-    }
-  })
+  //   }
+  // })
 
 
 
@@ -117,8 +117,8 @@ const UserList = () => {
               </SearchIconWrapper>
               <StyledInputBase
                 placeholder="Search…"
-                onChange={(e) => searchfunctionality(e.target.value)}
-                value={query}
+                // onChange={(e) => searchfunctionality(e.target.value)}
+                // value={query}
                 inputProps={{ 'aria-label': 'search' }}
               />
             </Search>

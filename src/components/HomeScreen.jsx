@@ -15,7 +15,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
 const HomeScreen = () => {
-  const [currentDate, setCurrentDate] = React.useState(new Date());
+  const [currentDate] = React.useState(new Date());
     const navigate = useNavigate();
 
  
@@ -38,6 +38,39 @@ const HomeScreen = () => {
     );
 
 
+   
+
+  let btnArrJson = [
+    
+      {
+        
+
+          
+          "name": "Notice Board",
+          "navigate": "noticeboard"
+        
+      } 
+    ,
+    {
+
+      "name": "AKS Directory",
+      "navigate": "wards"
+    
+
+    },
+     {
+      
+
+        "name": "AKS Office Bearers",
+        "navigate": "wards"
+      
+
+    }
+  ]
+
+  // console.log(btnArrJson[0].btn1)
+
+
     
   return (
     <>
@@ -52,9 +85,13 @@ const HomeScreen = () => {
    
         <Box className="my-4" sx={{ width: '70%',margin:'auto' }}>
       <Stack spacing={5}>
-        <Button variant='contained'  onClick={()=> navigate("/NoticeBoard")}  >Notice Board</Button>
-        <Button variant='contained'  onClick={()=> navigate("/wards")}>AKS Directory</Button>
-        <Button variant='contained'  onClick={()=> navigate("/wards")}>AKS Comittee</Button>
+        {btnArrJson?.map((item,key)=> 
+        <Button key={item.name} variant='contained'  onClick={()=> navigate(`/${item.navigate}`)}>{item.name}</Button>
+        )
+
+        }
+        {/* <Button variant='contained'  onClick={()=> navigate("/wards")}>AKS Directory</Button>
+        <Button variant='contained'  onClick={()=> navigate("/wards")}>AKS Comittee</Button> */}
       </Stack>
     </Box>
 
