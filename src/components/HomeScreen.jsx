@@ -62,7 +62,7 @@ const HomeScreen = () => {
       
 
         "name": "AKS Office Bearers",
-        "navigate": "wards"
+        "navigate": "managingcomittee"
       
 
     }

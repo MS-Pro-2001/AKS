@@ -1,5 +1,5 @@
 import { Divider, IconButton, List, ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListItemText, Skeleton, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import CallIcon from '@mui/icons-material/Call';
 
 import Avatar from '@mui/material/Avatar';
@@ -9,6 +9,7 @@ import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import SearchAppBar from './SearchAppBar';
 import { useNavigate } from 'react-router-dom';
+import { MyContext } from '../ContextAPI';
 
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -55,33 +56,34 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 
 const ManagingCommittee = () => {
   const navigate = useNavigate();
+  const {comitteeData} = useContext(MyContext)
 
   const [data, setData] = useState([])
-  const [isLoading, setisLoading] = useState(true)
+  const [isLoading, setisLoading] = useState(false)
   const [query, setQuery] = useState("")
 
 
   // Apply await async here
 
-  const fetchData = async () => {
-    await fetch('https://dummyjson.com/users/')
-      .then(res => res.json())
-      .then(data => setData(data.users))
+  // const fetchData = async () => {
+  //   await fetch('https://dummyjson.com/users/')
+  //     .then(res => res.json())
+  //     .then(data => setData(data.users))
 
-    setisLoading(false)
-
-
-  }
+  //   setisLoading(false)
 
 
-  useEffect(() => {
-    setTimeout(() => {
+  // }
+
+
+  // useEffect(() => {
+  //   setTimeout(() => {
       
-      fetchData();
-    }, 1500);
+  //     fetchData();
+  //   }, 1500);
 
 
-  }, [])
+  // }, [])
   const searchfunctionality = async (e)=>{
     console.log(e)
     setQuery(e)
@@ -93,7 +95,7 @@ const ManagingCommittee = () => {
 
   }
 
-
+// comitteeData.map((i)=> console.log(i))
 
 
 
@@ -127,7 +129,7 @@ const ManagingCommittee = () => {
 
 
             <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-            <Typography style={{margin:'20px 0 0 20px',color:'grey',fontSize:"20px"}} >showing total {data.length} results</Typography>
+            <Typography style={{margin:'20px 0 0 20px',color:'grey',fontSize:"20px"}} >showing total {comitteeData.length} results</Typography>
 
 
             
@@ -135,7 +137,7 @@ const ManagingCommittee = () => {
 
                     {isLoading ?<>
                       {
-                      ['1','2','3','4','5','6','7','8'].map(()=>
+                      comitteeData.map(()=>
                       <>
                       <ListItem
                 
@@ -178,14 +180,14 @@ const ManagingCommittee = () => {
                     <>
                     {
 
-                      data?.map((item) =>
+                      comitteeData?.map((item) =>
 
                         <>
                           <ListItem
                             key={item}
                             secondaryAction={
                               <IconButton edge="end" aria-label="delete">
-                               <a href={"tel:"+item.phone}>
+                               <a href={"tel:"+item.Contact_number}>
                                 <CallIcon color="primary" />
                                 </a> 
                               </IconButton>
@@ -200,7 +202,7 @@ const ManagingCommittee = () => {
 
                               </ListItemIcon>
 
-                              <ListItemText primary={isLoading ? <><Skeleton variant="text" sx={{ fontSize: '1rem' }} /></> : item.firstName} secondary={item?.company?.department} onClick={() => navigate(`/Userdetails/${item.id}`)} />
+                              <ListItemText primary={isLoading ? <><Skeleton variant="text" sx={{ fontSize: '1rem' }} /></> : item.Name} secondary={item?.Designation}  />
 
 
 
