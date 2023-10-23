@@ -24,7 +24,7 @@ function App() {
   
   useEffect(() => {
     const fetchData = async () => {
-      await fetch('https://sheetdb.io/api/v1/d1jcvp2yjtm67')
+      await fetch('https://sheetdb.io/api/v1/vjjitmtelevig')
         .then(res => res.json())
         .then(data => setData(data))
   
@@ -36,7 +36,7 @@ function App() {
   
     }
     fetchComitteeData();
-    // fetchData();
+    fetchData();
 
   }, [])
 

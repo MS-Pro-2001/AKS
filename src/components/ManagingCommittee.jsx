@@ -56,11 +56,12 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 
 const ManagingCommittee = () => {
   const navigate = useNavigate();
-  const {comitteeData} = useContext(MyContext)
+  const { comitteeData } = useContext(MyContext)
 
   const [data, setData] = useState([])
-  const [isLoading, setisLoading] = useState(false)
+  const [isLoading, setisLoading] = useState(true)
   const [query, setQuery] = useState("")
+  const [Arr, setArr] = useState(comitteeData)
 
 
   // Apply await async here
@@ -78,25 +79,52 @@ const ManagingCommittee = () => {
 
   // useEffect(() => {
   //   setTimeout(() => {
-      
+
   //     fetchData();
   //   }, 1500);
 
 
   // }, [])
-  const searchfunctionality = async (e)=>{
-    console.log(e)
-    setQuery(e)
-    await fetch(`https://dummyjson.com/users/search?q=${query}`)
-    .then(res => res.json())
-    .then(data => setData(data.users))
+  // const searchfunctionality = async (e)=>{
+  //   console.log(e)
+  //   setQuery(e)
+  //   await fetch(`https://dummyjson.com/users/search?q=${query}`)
+  //   .then(res => res.json())
+  //   .then(data => setData(data.users))
 
-  setisLoading(false)
+  // setisLoading(false)
 
-  }
+  // }
 
-// comitteeData.map((i)=> console.log(i))
 
+
+
+
+  const filterBySearch = (e) => {
+
+    setQuery(e);
+
+    var updatedList = [...comitteeData];
+
+    updatedList = comitteeData.filter((item) => {
+     
+      return item.Name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+    });
+
+    setArr(updatedList);
+    // Edege case
+    if (query.length === 0 || query.length === 1) {
+
+      setArr(comitteeData);
+    }
+
+
+  };
+
+
+  setTimeout(() => {
+    setisLoading(false)
+  }, 2000);
 
 
 
@@ -115,7 +143,7 @@ const ManagingCommittee = () => {
               </SearchIconWrapper>
               <StyledInputBase
                 placeholder="Search…"
-                onChange={(e)=>searchfunctionality(e.target.value)}
+                onChange={(e) => filterBySearch(e.target.value)}
                 value={query}
                 inputProps={{ 'aria-label': 'search' }}
               />
@@ -129,67 +157,67 @@ const ManagingCommittee = () => {
 
 
             <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-            <Typography style={{margin:'20px 0 0 20px',color:'grey',fontSize:"20px"}} >showing total {comitteeData.length} results</Typography>
+              <Typography style={{ margin: '20px 0 0 20px', color: 'grey', fontSize: "20px" }} >showing total {Arr.length} results</Typography>
 
 
-            
-                  <List>
 
-                    {isLoading ?<>
-                      {
-                      comitteeData.map(()=>
+              <List>
+
+                {isLoading ? <>
+                  {
+                    Arr.map((key) =>
                       <>
-                      <ListItem
-                
-                secondaryAction={
-                
-                    <CallIcon  color="primary"/>
+                        <ListItem
 
-               
-                 
-                }
- 
-                disablePadding >
-                <ListItemButton>
-                  <ListItemIcon>
-                    <ListItemAvatar>
-                      {/* <Avatar alt="Remy Sharp" src={<Skeleton variant="circular" width={40} height={40} />} /> */}
-                      <Skeleton variant="circular" width={40} height={40} />
-                    </ListItemAvatar>
-                   
-                  </ListItemIcon>
-                  
-                  <ListItemText  primary={<Skeleton variant="text" sx={{ fontSize: '1rem' }} width={200} />}  secondary={<Skeleton variant="text" width={100} />}  />
-                 
-     
-                
- 
-                </ListItemButton>
-              </ListItem>
-                
-              <Divider/>
-               
+                          secondaryAction={
+
+                            <CallIcon color="primary" />
+
+
+
+                          }
+
+                          disablePadding >
+                          <ListItemButton>
+                            <ListItemIcon>
+                              <ListItemAvatar>
+                                {/* <Avatar alt="Remy Sharp" src={<Skeleton variant="circular" width={40} height={40} />} /> */}
+                                <Skeleton variant="circular" width={40} height={40} />
+                              </ListItemAvatar>
+
+                            </ListItemIcon>
+
+                            <ListItemText primary={<Skeleton variant="text" sx={{ fontSize: '1rem' }} width={200} />} secondary={<Skeleton variant="text" width={100} />} />
+
+
+
+
+                          </ListItemButton>
+                        </ListItem>
+
+                        <Divider />
+
                       </>
-                      
-                      )
-                    }
-                    
-                    
-                    
-                    </>:
-                    <>
+
+                    )
+                  }
+
+
+
+                </> :
+                  <>
                     {
 
-                      comitteeData?.map((item) =>
+                      Arr?.map((item) =>
 
                         <>
                           <ListItem
                             key={item}
                             secondaryAction={
                               <IconButton edge="end" aria-label="delete">
-                               <a href={"tel:"+item.Contact_number}>
-                                <CallIcon color="primary" />
-                                </a> 
+                                <a href={"tel:" + item.Contact_number}>
+                                  <CallIcon color="primary" />
+                                </a>
                               </IconButton>
                             }
 
@@ -202,7 +230,7 @@ const ManagingCommittee = () => {
 
                               </ListItemIcon>
 
-                              <ListItemText primary={isLoading ? <><Skeleton variant="text" sx={{ fontSize: '1rem' }} /></> : item.Name} secondary={item?.Designation}  />
+                              <ListItemText primary={isLoading ? <><Skeleton variant="text" sx={{ fontSize: '1rem' }} /></> : item.Name} secondary={item?.Designation} />
 
 
 
@@ -215,14 +243,14 @@ const ManagingCommittee = () => {
                         </>
                       )
                     }
-                    </>
-                  }
+                  </>
+                }
 
 
-                  </List>
+              </List>
 
-              
-              
+
+
 
 
 
