@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { MyContext } from '../ContextAPI'
 
+import logo from "../sanju_bhaiya_fam.jpeg"
+
 
 
 import ListSubheader from '@mui/material/ListSubheader';
@@ -67,7 +69,8 @@ const UserDetails = () => {
     //     fetchData();    
     // },[])
 
-    // console.log(data)
+    
+
 
  
    
@@ -88,11 +91,14 @@ const UserDetails = () => {
     <div className="row my-4" >
         <div className="position-relative my-4">
 
-            <div className="position-absolute top-0 start-50 translate-middle">
+            <div className="position-absolute top-0 start-50 translate-middle ">
+            
                 <Avatar
                     alt="Remy Sharp"
-                    src={newval?.image}
-                    sx={{ width: 70, height: 70 }}
+                    src = {`https://drive.google.com/uc?export=view&id=${newval[0].Family_Photo.replace("https://drive.google.com/open?id=","")}`}
+                    // src="https://drive.google.com/file/d/1oyLUEfp2RFXqjSabNHk8WhE2y5EzMwWf/view"
+                    // sx={{ width: 90, height: 80 }}
+                    style={{width:"100px",height:"90px",boxShadow:'1px 1px 3px 1px grey'}}
                 />
 
             </div>

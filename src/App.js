@@ -20,17 +20,26 @@ function App() {
   const [comitteeData, setComitteeData] = useState([])
 
 
+  // APis 
+  // from mridul.sehgalsnp@gmail.com
+  // https://sheetdb.io/api/v1/d1jcvp2yjtm67  aks
+  // https://sheetdb.io/api/v1/ivqq2yinods4s aks comittee
+
   
   
   useEffect(() => {
     const fetchData = async () => {
-      await fetch('https://sheetdb.io/api/v1/vjjitmtelevig')
+      // await fetch('https://sheetdb.io/api/v1/vjjitmtelevig')
+      await fetch('https://sheetdb.io/api/v1/d1jcvp2yjtm67')
+
         .then(res => res.json())
         .then(data => setData(data))
   
     }
     const fetchComitteeData = async () => {
-      await fetch('https://sheetdb.io/api/v1/c2id24dx91yp0')
+      // await fetch('https://sheetdb.io/api/v1/c2id24dx91yp0')
+      await fetch('https://sheetdb.io/api/v1/ivqq2yinods4s')
+
         .then(res => res.json())
         .then(data => setComitteeData(data))
   
@@ -41,7 +50,7 @@ function App() {
   }, [])
 
 
-
+  
 
   return (
     <BrowserRouter>

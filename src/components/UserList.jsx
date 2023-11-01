@@ -96,7 +96,7 @@ const UserList = () => {
   // })
 
 
-
+console.log(data);
 
 
 
@@ -205,7 +205,8 @@ const UserList = () => {
                                 <ListItemButton>
                                   <ListItemIcon>
                                     <ListItemAvatar>
-                                      <Avatar alt="Remy Sharp" src={""} />
+                                      <Avatar alt="Remy Sharp" src={`https://drive.google.com/uc?export=view&id=${item.Family_Photo.replace("https://drive.google.com/open?id=","")}`}
+                                      style={{boxShadow:'1px 1px 3px 1px grey'}} />
                                     </ListItemAvatar>
 
                                   </ListItemIcon>

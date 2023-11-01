@@ -57,7 +57,7 @@ const Wards = () => {
   const wards = [
     "Bopal",
     "Bapunagar",
-    "Ghatlodia",
+    "Ghatlodiya",
     "Krishnanagar",
     "Maninagar",
     "Naroda",
