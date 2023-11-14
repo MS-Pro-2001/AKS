@@ -89,20 +89,12 @@ const UserDetails = () => {
     <div style={{ margin: '20px 20px' }}>
 
     <div className="row my-4" >
-        <div className="position-relative my-4">
-
-            <div className="position-absolute top-0 start-50 translate-middle ">
-            
-                <Avatar
-                    alt="Remy Sharp"
-                    src = {`https://drive.google.com/uc?export=view&id=${newval[0].Family_Photo.replace("https://drive.google.com/open?id=","")}`}
-                    // src="https://drive.google.com/file/d/1oyLUEfp2RFXqjSabNHk8WhE2y5EzMwWf/view"
-                    // sx={{ width: 90, height: 80 }}
-                    style={{width:"100px",height:"90px",boxShadow:'1px 1px 3px 1px grey'}}
-                />
-
-            </div>
-        </div>
+       <div className="row my-2 d-flex justify-content-center" >
+  
+      <div className="col d-flex justify-content-center"  >
+  <img style={{borderRadius:"20px"}} src={`https://drive.google.com/uc?export=view&id=${newval[0].Family_Photo.replace("https://drive.google.com/open?id=","")}`} alt="" width={280} height={300} />
+   
+</div>
 
 
     </div>
