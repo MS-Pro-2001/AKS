@@ -96,7 +96,7 @@ const UserDetails = () => {
 
             <div className=" top-0 start-50 translate-middle "> */}
 
-            <img style={{ borderRadius: "20px" }} src={`https://drive.google.com/uc?export=view&id=${newval[0].Family_Photo.replace("https://drive.google.com/open?id=", "")}`} alt="" width={280} height={300} />
+            <img style={{ borderRadius: "20px", objectFit:"cover"  }} src={`https://drive.google.com/uc?export=view&id=${newval[0].Family_Photo.replace("https://drive.google.com/open?id=", "")}`} alt="" width={280} height={300} />
 
             {/* <Avatar
                     alt="Remy Sharp"
