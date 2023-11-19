@@ -39,7 +39,7 @@ const UserDetails = () => {
 
   const newval = data.filter((item) => {
 
-    return item.UserId === id;
+    return item.ID === id;
   })
 
 
